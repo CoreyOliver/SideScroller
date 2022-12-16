@@ -64,7 +64,6 @@ export class Jumping extends State {
         if(this.player.vy > this.player.weight) {
             this.player.setState(states.FALLING)
         }
-        //not entering FALLING STATE
     }
 
 }
@@ -77,7 +76,7 @@ export class Falling extends State {
     enter() {
         this.player.frameX = 0
         this.player.maxFrame = 6
-        this.player.frameY = 1
+        this.player.frameY = 2
     }
     handleInput(input) {
         if(this.player.onGround()) {
