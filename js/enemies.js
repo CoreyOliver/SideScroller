@@ -5,12 +5,13 @@ class Enemy {
         this.fps = 20
         this.frameInterval = 1000/this.fps
         this.frameTimer = 0
+        this.markedForDeletion = false
 
     }
 
     update(deltaTime) {
         //movement
-        this.x += this.speedX
+        this.x -= this.speedX + this.game.speed
         this.y += this.speedY
         if(this.frameTimer > this.frameInterval) {
             this.frameTimer = 0
@@ -19,6 +20,10 @@ class Enemy {
         }else {
             this.frameTimer += deltaTime
         }
+        //check if off screen
+        if(this.x + this.width < 0) {
+            this.markedForDeletion = true
+        }
     }
 
     draw(context) {
@@ -26,29 +31,33 @@ class Enemy {
     }
 }
 
-class FlyingEnemy extends Enemy {
+export class FlyingEnemy extends Enemy {
     constructor(game) {
         super()
         this.game = game
         this.width = 60
         this.height = 44
-        this.x = 200
-        this.y = 200
-        this.speedX = 2
+        this.x = this.game.width + Math.random() * this.game.width * 0.5
+        this.y = Math.random() * this.game.height * 0.5
+        this.speedX = Math.random() + 1
+        this.speedY = 0
         this.maxFrame = 5
         this.image = enemy_fly
+        this.angle = 0
+        this.va = Math.random() * 0.1 + 0.1
     }
 
     update(deltaTime) {
         super.update(deltaTime)
-        //8:15:34
+        this.angle += this.va
+        this.y += Math.sin(this.angle)
     }
 }
 
-class GroundEnemy extends Enemy {
+export class GroundEnemy extends Enemy {
 
 }
 
-class ClimbingEnemy extends Enemy {
+export class ClimbingEnemy extends Enemy {
 
 }
