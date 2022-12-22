@@ -2,7 +2,8 @@ export class UI {
     constructor(game) {
         this.game = game
         this.fontSize = 30
-        this.fontFamily = 'Helvetica'
+        this.fontFamily = 'Creepster'
+        this.livesImage = lives
     }
 
     draw(context) {
@@ -11,6 +12,24 @@ export class UI {
         context.fillStyle = this.game.fontColor
         //score
         context.fillText('Score: ' + this.game.score, 20, 50)
+        // timer
+        context.font = this.fontSize * 0.8 + ' px' + this.fontFamily
+        context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80)
+        // lives
+        for(let i = 0; i < this.game.lives; i++) {
+            context.drawImage(this.livesImage, 30 * i + 20, 95, 25, 25)
+        }
+        // game over message
+        if(this.game.gameOver){
+        context.textAlign = 'center'
+        context.font = this.fontSize * 2 + ' px' + this.fontFamily
+            if((this.game.score > 5) && this.game.lives > 0) {
+            context.fillText('Winner!!', this.game.width * 0.5, this.game.height * 0.5)
+            } else {
+                context.fillText('Better Luck Next Time', this.game.width * 0.5, this.game.height * 0.5)
+            }
+        }
+
     }
 
 }

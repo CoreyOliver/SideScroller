@@ -21,7 +21,6 @@ class Layer{
     }
 }
 
-//////8:04//////
 export class Background {
     constructor(game) {
         this.game = game
