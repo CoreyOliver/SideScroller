@@ -1,6 +1,6 @@
 # SideScroller
 Sidescroller JS module game built for OOP principle practes
-Come see my project at : https://cosidescroller.netlify.app/
+### Come see my project at : https://cosidescroller.netlify.app/
 Use ASDW keys for movement with 'Enter' key for attack
 # How It's Made
 Vanilla JS modules with HTML5 canvas element. Non commercial use game assets for personal practice only
